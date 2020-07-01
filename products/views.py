@@ -17,3 +17,4 @@ def product_list(request):
     products = Product.objects.all()
     description = Product.desc
     return render(request, 'products.html', { 'products' : products }, { 'des' : description})
+
