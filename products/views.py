@@ -1,9 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from django.utils import timezone
 from .models import Product
 
+
 # Create your views here.
+def home_page(request):
+    return render(request,'index.html')
+
 def say_hi(request,name):
     return render(request, 'say-hi.html',{'name': name})
 
@@ -16,5 +20,10 @@ def show_time(request):
 def product_list(request):
     products = Product.objects.all()
     description = Product.desc
-    return render(request, 'products.html', { 'products' : products }, { 'des' : description})
+    return render(request, 'products/products.html', { 'products' : products }, { 'des' : description})
+
+# workhop 3 
+def product_details(request,pk):
+    product = get_object_or_404(Product,pk=pk)
+    return render(request, 'products/product-details.html',{'product' : product})
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=devices-width, initial-scale=1.0">
+    <title> Products </title>
+</head>
+<body>
+    <div> Products: </div>
+{% for product in products %}
+{% if product %}
+<ul>
+    <li><div><a href="{{ product.get_absolute_url }}"><strong> product:</strong> {{product.title}} </a></div></li>
+    <li><div> <strong>Description: </strong>{{product.desc}}</div></li>
+</ul>
+{% else %}
+<h1> product is empty </h1>
+{% endif %}
+{% endfor %}
+</body>
+</html>
