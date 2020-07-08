@@ -15,6 +15,3 @@ class Product(models.Model):
     # to show the product as string 
     def __str__(self):
         return self.title
-
-    
-

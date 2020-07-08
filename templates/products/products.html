@@ -7,15 +7,14 @@
 </head>
 <body>
     <div> Products: </div>
+
 {% for product in products %}
-{% if product %}
 <ul>
     <li><div><a href="{{ product.get_absolute_url }}"><strong> product:</strong> {{product.title}} </a></div></li>
     <li><div> <strong>Description: </strong>{{product.desc}}</div></li>
+{% empty %}
+<li><div style="color:red;"><strong> Sorry no product found </strong></div></li>
 </ul>
-{% else %}
-<h1> product is empty </h1>
-{% endif %}
 {% endfor %}
 </body>
 </html>
