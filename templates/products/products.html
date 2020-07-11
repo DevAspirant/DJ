@@ -6,15 +6,17 @@
     <title> Products </title>
 </head>
 <body>
-    <div> Products: </div>
-
+<div> Products: 
 {% for product in products %}
 <ul>
-    <li><div><a href="{{ product.get_absolute_url }}"><strong> product:</strong> {{product.title}} </a></div></li>
-    <li><div> <strong>Description: </strong>{{product.desc}}</div></li>
+    <li><a href="{{ product.get_absolute_url }}"><strong> product:</strong> {{product.title}} </a></li>
+    <li><strong>Description: </strong>{{product.desc}}</li>
+    <li><strong>Price:</strong> {{product.Price}}</li><!-- TODO; why the price is not shown issue is -->
+    <li><strong>Created at :</strong>{{ product.created_date}}</li>
+</ul>
 {% empty %}
 <li><div style="color:red;"><strong> Sorry no product found </strong></div></li>
-</ul>
 {% endfor %}
+</div>
 </body>
 </html>

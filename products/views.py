@@ -20,10 +20,12 @@ def show_time(request):
 def product_list(request):
     products = Product.objects.all()
     description = Product.desc
+    price = Product.price
     return render(request, 'products/products.html', { 'products' : products }, { 'des' : description})
 
 # workhop 3 
 def product_details(request,pk):
     product = get_object_or_404(Product,pk=pk)
     return render(request, 'products/product-details.html',{'product' : product})
+  
 
