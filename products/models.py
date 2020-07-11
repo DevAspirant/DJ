@@ -4,11 +4,13 @@ from django.urls import reverse
 
 class Product(models.Model):
     
+    brand = models.CharField(max_length=100)
+
     title = models.CharField(max_length=100)
      
     desc = models.CharField(max_length=500,blank=True, null=True) # to show the product description
 
-    price = models.FloatField(blank=True,null=True) # price 
+    price = models.PositiveIntegerField(blank=True,null=True) # price 
 
     created_date = models.DateTimeField(auto_now_add=True,blank=True,null=True) # created date 
     
