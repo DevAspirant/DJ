@@ -19,6 +19,8 @@ from django.shortcuts import redirect
 from products.views import home_page
 from products.views import say_hi
 from products.views import show_time
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 def home(request):
@@ -31,4 +33,4 @@ urlpatterns = [
     path('show_time/',show_time),
     path('',include('products.urls')),
     path('',home,name='home'),
-]
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

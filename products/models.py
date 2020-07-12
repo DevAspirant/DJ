@@ -14,6 +14,8 @@ class Product(models.Model):
 
     created_date = models.DateTimeField(auto_now_add=True,blank=True,null=True) # created date 
     
+    image = models.ImageField(upload_to='product/',null=True)
+
     # for link the product
     def get_absolute_url(self):
         return reverse('product_details',args=(self.id,))

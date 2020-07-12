@@ -38,7 +38,7 @@ def product_add(request):
 #         add the product into DB
 #        product = Product(brand=brand,title=title,desc=description,price=price)
 #        product.save()
-        form = AddProductForm(request.POST)
+        form = AddProductForm(request.POST,request.FILES)
 
         if form.is_valid():
             form.save() 
@@ -54,7 +54,7 @@ def product_edit(request,pk):
 
     if request.method=="POST":
    
-        form = AddProductForm(request.POST, instance=product)
+        form = AddProductForm(request.POST, request.FILES,instance=product)
 
         if form.is_valid():
             form.save() 

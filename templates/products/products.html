@@ -9,6 +9,7 @@
 <div> Products: 
 {% for product in products %}
 <ul>
+    <img style="border-radius: 40%; width: 200px; height: 200px;" src="{{ product.image.url }}" />
     <li><a href="{{ product.get_absolute_url }}"><strong> product:</strong> {{product.title}} </a></li>
     <li><strong>Description: </strong>{{product.desc}}</li>
     <li><strong>Price:</strong> {{product.price}} <strong>SR</strong></li>
