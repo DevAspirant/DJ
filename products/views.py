@@ -61,7 +61,9 @@ def product_edit(request,pk):
             return render(request,'products/edit-product.html')
     else:
         form = AddProductForm(instance=product)
-        return render(request, 'products/product-add.html', {'form' : form}) 
+    
+    # solved 
+    return render(request, 'products/product-add.html', {'form' : form}) 
 
 def product_delete(request,pk):
     product = get_object_or_404(Product,pk=pk)
