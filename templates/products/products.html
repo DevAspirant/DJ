@@ -11,10 +11,10 @@
 <ul>
     <li><a href="{{ product.get_absolute_url }}"><strong> product:</strong> {{product.title}} </a></li>
     <li><strong>Description: </strong>{{product.desc}}</li>
-    <li><strong>Price:</strong> {{product.price}} <strong>SR</strong></li><!-- TODO; why the price is not shown issue is -->
+    <li><strong>Price:</strong> {{product.price}} <strong>SR</strong></li>
     <li><strong>Created at :</strong>{{ product.created_date}}</li>
 </ul>
-
+<hr style='width:90%;'>
 {% empty %}
 <li><div style="color:red;"><strong> Sorry no product found </strong></div></li>
 {% endfor %}

@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=devices-width, initial-scale=1.0">
-    <title> Product Details  </title>
+    <title>add Product</title>
 </head>
 <body>
-    <h1> {{ product.title }} </h1>
-    <p> {{ product.desc }} </p>
+    <form action="" method="POST">
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <input type="submit" value="add" />
+    </form>
 </body>
 </html>
