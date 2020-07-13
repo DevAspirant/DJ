@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=devices-width, initial-scale=1.0">
-    <title> Products </title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+  
+
 <div> Products: 
 {% for product in products %}
 <ul>
@@ -19,6 +15,4 @@
 {% empty %}
 <li><div style="color:red;"><strong> Sorry no product found </strong></div></li>
 {% endfor %}
-</div>
-</body>
-</html>
+{% endblock %}
