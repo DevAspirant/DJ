@@ -27,7 +27,7 @@ def home(request):
     return redirect('product_list')
 
 urlpatterns = [
-    path('',home_page),
+    #path('',home_page),
     path('admin/', admin.site.urls),
     path('say_hi/<str:name>',say_hi),
     path('show_time/',show_time),
