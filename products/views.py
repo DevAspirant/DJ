@@ -19,8 +19,7 @@ def show_time(request):
 # workshop 2
 def product_list(request):
     products = Product.objects.all()
-    description = Product.desc
-    return render(request, 'products/products.html', { 'products' : products }, { 'des' : description})
+    return render(request, 'products/products.html', { 'products' : products },)
 
 # workhop 3 
 def product_details(request,pk):
