@@ -10,5 +10,5 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required information')
 
     class Meta:
-       Model = User
+       model = User
        fields = ('username','password1','password2','first_name','last_name','email')
