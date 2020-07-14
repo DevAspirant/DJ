@@ -7,6 +7,7 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
+            print('has been saved')
             return redirect('login')
         
     # request.method == GET 
