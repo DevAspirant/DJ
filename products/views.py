@@ -1,6 +1,8 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.utils import timezone
+
 from .models import Product
 from products.forms import AddProductForm
 
@@ -25,44 +27,51 @@ def product_list(request):
 def product_details(request,pk):
     product = get_object_or_404(Product,pk=pk)
     return render(request, 'products/product-details.html',{'product' : product})
-  
+
+
 #workshop 5 
 def product_add(request):
-    if request.method=="POST":
-#        brand = request.POST["brand"]
-#       title = request.POST["title"]
-#        description = request.POST["desc"]
-#        price = request.POST["price"]
+    if request.user.is_authenticated and request.user.is_superuser: 
+        if request.method=="POST":
+    #  brand = request.POST["brand"]
+    #       title = request.POST["title"]
+    #        description = request.POST["desc"]
+    #        price = request.POST["price"]
 
-#         add the product into DB
-#        product = Product(brand=brand,title=title,desc=description,price=price)
-#        product.save()
-        form = AddProductForm(request.POST,request.FILES)
+    #         add the product into DB
+    #        product = Product(brand=brand,title=title,desc=description,price=price)
+    #      product.save()
+            form = AddProductForm(request.POST,request.FILES)
 
-        if form.is_valid():
-            form.save() 
-            return render(request,'products/add-product-succes.html')
+            if form.is_valid():
+                form.save() 
+                return render(request,'products/add-product-succes.html')
+        else:
+            form = AddProductForm()
+        # solved 
+        return render(request, 'products/product-add.html', {'form' : form})
     else:
-        form = AddProductForm()
-    # solved 
-    return render(request, 'products/product-add.html', {'form' : form}) 
+        return redirect('product_list')
 
+@login_required
 def product_edit(request,pk):
+    if request.user.is_authenticated and request.user.is_superuser:
+        product = get_object_or_404(Product, pk=pk)
 
-    product = get_object_or_404(Product, pk=pk)
-
-    if request.method=="POST":
-   
-        form = AddProductForm(request.POST, request.FILES,instance=product)
-
-        if form.is_valid():
-            form.save() 
-            return render(request,'products/edit-product.html')
-    else:
-        form = AddProductForm(instance=product)
+        if request.method=="POST":
     
-    # solved 
-    return render(request, 'products/product-add.html', {'form' : form}) 
+            form = AddProductForm(request.POST, request.FILES,instance=product)
+
+            if form.is_valid():
+                form.save() 
+                return render(request,'products/edit-product.html')
+        else:
+            form = AddProductForm(instance=product)
+        
+        # solved 
+        return render(request, 'products/product-add.html', {'form' : form}) 
+    else:
+        return redirect('product_list')    
 
 def product_delete(request,pk):
     product = get_object_or_404(Product,pk=pk)
