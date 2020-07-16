@@ -10,9 +10,8 @@
         <div class="product-brand">{{product.brand | capfirst }}</div>
         <h2 class="product-name">{{product.title | capfirst }}</h2>
         <div class="product-price">${{product.price | floatformat:2 }}</div>
-        <p class="product-desc">
-            {{product.description}}
-        </p>
+        <p class="product-desc">{{product.description}}</p>
+        <a href="{% url 'add_to_cart'  product_id=product.id %}"> Add product</a>
     </div>
 </section>
 {% endblock %}
