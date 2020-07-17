@@ -15,8 +15,17 @@ class Cart(models.Model):
     items = models.ManyToManyField(Product)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def total_price(self):
+        total = 0
+        for item in self.items.all(): 
+            total += item.price 
+
+        return total
+
     def __str__(self):
         return str(self.user)
+
+
 
 @receiver(post_save, sender=User)
 def create_user_cart(sender, instance, created, **kwargs):
