@@ -136,5 +136,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
-MAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
