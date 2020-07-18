@@ -12,6 +12,7 @@
         <div class="product-price">${{product.price | floatformat:2 }}</div>
         <p class="product-desc">{{product.description}}</p>
         <a href="{% url 'add_to_cart'  product_id=product.id %}"> Add product</a>
+        <a href="{% url 'make_order' product_id=product.id %}">Order Now</a>
     </div>
 </section>
 {% endblock %}
