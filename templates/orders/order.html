@@ -1,9 +1,22 @@
-<ul>
-    {% for product in products %}
-    <li>
-        <h2>{{ product.title | capfirst }}</h2>
-    </li>
-    {% empty %}
-    <li> No product yet </li>
-    {% endfor %}
-</ul>
+{% extends "base.html" %}
+{% block head_title %}Order{% endblock %}
+
+{% block content %}
+
+<section class="form-section">
+    <h2 class="section-headline">Make Order</h2>
+    <p class="section-description">
+        Please fill your address 
+    </p>
+    <div class="form">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p>
+                <button type="submit">Order</button>
+            </p>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
