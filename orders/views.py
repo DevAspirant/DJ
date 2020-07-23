@@ -1,20 +1,34 @@
-from django.shortcuts import render,get_object_or_404,redirect
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
+
 from .models import Orders
-from products.models import Product
 from .forms import OrderForm
+from .utils import send_order_email
 
-# Create your views here.
-#@login_required
+@login_required
 def make_order(request):
+    
     user = request.user
-    form = OrderForm(request.POST,request.FILES)
-    order = form.save(user)
-    return render(request,'orders/order.html',{'form' : form })
-    
 
-    
+    if not user.cart.items.exists():
+        return redirect('product_list')
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            order = form.save(user)
+            send_order_email(user, order)
+            return render(request,'orders/order_success.html')
+    else:
+        form = OrderForm()
+
+    return render(request, 'orders/order.html',{'form' : form})    
+
 
 def order(request):
-    order = Orders.objects.all()
-    return render(request, 'orders/order_list.html',{'order':order})
+    if request.user.is_authenticated and request.user.is_superuser:
+        orders = Orders.objects.all()
+        return render(request, 'orders/order_list.html',{'orders':orders})
+    else:
+        return redirect('product_list')

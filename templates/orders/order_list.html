@@ -1,1 +1,22 @@
-<h3> Order List </h3>
+
+{% extends "base.html" %}
+
+{% block head_title %}Orders{% endblock %}
+
+{% block content %}
+<table>
+    {% for order in orders %}
+    <tr>
+        <th>User: {{ order.user }} || </th>
+        <th>order address: {{ order.address }}  </th>
+        <th>order id: {{ order.id }} | </th>
+        <th>order total: {{ order.total_price }} || </th>
+    </tr>
+    <tr>
+        {% empty %}
+        <th>No Order yet </th>
+    </tr>
+    <hr>
+    {% endfor %}
+</table>
+{% endblock %}

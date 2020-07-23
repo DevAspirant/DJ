@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block head_title %}{{product.title | capfirst }}{% endblock %}
+{% block head_title %}
+{{product.title | capfirst }}{% endblock %}
 
 {% block content %}
 <section class="single-product-details clearfix">
@@ -12,7 +13,7 @@
         <div class="product-price">${{product.price | floatformat:2 }}</div>
         <p class="product-desc">{{product.description}}</p>
         <a href="{% url 'add_to_cart'  product_id=product.id %}"> Add product</a>
-        <a href="{% url 'make_order' product_id=product.id %}">Order Now</a>
+        <a href="{% url 'make_order' %}">Order Now</a>
     </div>
 </section>
 {% endblock %}
