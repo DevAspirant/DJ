@@ -1,11 +1,83 @@
+{% extends "base.html" %}
+{% block head_title %}All Prodct{% endblock %}
+{% block content %}
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            <form class="col-md-12" method="post">
+                <div class="site-blocks-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="product-thumbnail">Image</th>
+                                <th class="product-name">Product</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-remove">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                            <tr>
+                                <td class="product-thumbnail">
+                                    <img src="{{ product.image.url}}" alt="Image" class="img-fluid">
+                                </td>
+                                <td class="product-name">
+                                    <h2 class="h5 text-black">{{product.title}}</h2>
+                                </td>
+                                <td>{{ product.price }} SR</td>
+                                <td><a href="{% url 'remove_from_cart' product_id=product.id %}"
+                                        class="btn btn-primary height-auto btn-sm">X</a></td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4"> No Product yet </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-primary btn-sm btn-block">Clear Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!--Total -->
+
+            <div class="col-md-6 pl-5">
+                <div class="row justify-content-end">
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-12 text-right border-bottom mb-5">
+                                <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-6">
+                                <span class="text-black">Total</span>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <!-- Do not know why is not print -->
+                                <strong class="text-black"> {{product.total_price}} SR</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn btn-primary btn-lg btn-block" href="{% url 'make_order' %}">Proceed To
+                                    Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 <ul>
-    {% for product in products %}
-    <li>
-        <h2>{{ product.title | capfirst }}</h2>
-        <a href="{% url 'remove_from_cart' product_id=product.id %}">Remove Product from the list </a>
-    </li>
-    {% empty %}
-    <li> No product yet </li>
-    {% endfor %}
-</ul>
-<p> Total Price {{ total_price }}</p>
+    {% endblock %}

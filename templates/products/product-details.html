@@ -3,17 +3,27 @@
 {{product.title | capfirst }}{% endblock %}
 
 {% block content %}
-<section class="single-product-details clearfix">
-    <div class="product-details-img">
-        <img src="{{product.image.url}}" alt="" />
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="item-entry">
+                    <a href="#" class="product-item md-height bg-gray d-block">
+                        <img src="{{product.image.url}}" alt="Image" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3 class="h6">{{product.brand|capfirst}}</h3>
+                <h2 class="text-black">{{product.title | capfirst}}</h2>
+                <p>{{product.description}}</p>
+                <p><strong class="text-primary h4">{{product.price|floatformat:2}} SR</strong></p>
+                <p><a href="{% url 'add_to_cart'  product_id=product.id %}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
+
+            </div>
+        </div>
     </div>
-    <div class="product-details-desc">
-        <div class="product-brand">{{product.brand | capfirst }}</div>
-        <h2 class="product-name">{{product.title | capfirst }}</h2>
-        <div class="product-price">${{product.price | floatformat:2 }}</div>
-        <p class="product-desc">{{product.description}}</p>
-        <a href="{% url 'add_to_cart'  product_id=product.id %}"> Add product</a>
-        <a href="{% url 'make_order' %}">Order Now</a>
-    </div>
-</section>
+</div>
+
 {% endblock %}
