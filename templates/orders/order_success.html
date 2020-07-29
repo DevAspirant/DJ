@@ -1,12 +1,16 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block head_title %} Make Order {% endblock %}
-
 {% block content %}
-<section>
-    <div>
-        <h1 class="section-headline">Thank you!</h1>
-        <p class="section-description"><strong>Please Check your email</strong> for further information about your order</p>
-        <a class="back" href="{% url 'home' %}">Continue to homepage</a>
+<div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <span class="icon-check_circle display-3 text-success"></span>
+          <h2 class="display-3 text-black">Thank you!</h2>
+          <p class="lead mb-5"><strong>Please Check your email</strong> for further information about your order</p>
+          <p><a href="{% url 'home' %}" class="btn btn-sm height-auto px-4 py-3 btn-primary">Back to shop</a></p>
+        </div>
+      </div>
     </div>
-</section>
+  </div>
 {% endblock %}

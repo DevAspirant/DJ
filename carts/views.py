@@ -21,6 +21,12 @@ def remove_from_cart(request,product_id):
 
     return redirect('cart')
 
+@login_required
+def clear_cart(request ):
+ 
+    request.user.cart.items.clear()
+
+    return redirect('cart')
 
 @login_required
 def cart(request):

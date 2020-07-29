@@ -31,10 +31,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('say_hi/<str:name>',say_hi),
     path('show_time/',show_time),
-    path('accounts/',include('accounts.urls')),
+    path('',include('accounts.urls')),
     path('',include('products.urls')),
-    path('cart/',include('carts.urls')),
-    path('order/',include('orders.urls')),
+    path('',include('carts.urls')),
+    path('',include('orders.urls')),
     path('',home,name='home'),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

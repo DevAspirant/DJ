@@ -43,7 +43,7 @@
             <div class="col-md-6">
                 <div class="row mb-5">
                     <div class="col-md-6">
-                        <button class="btn btn-outline-primary btn-sm btn-block">Clear Cart</button>
+                        <a href="{% url 'clear_cart' %}" class="btn btn-outline-primary btn-sm btn-block">Clear Cart</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-md-6 text-right">
                                 <!-- Do not know why is not print -->
-                                <strong class="text-black"> {{product.total_price}} SR</strong>
+                                <strong class="text-black"> {{ total_price }} SR</strong>
                             </div>
                         </div>
                         <div class="row">
